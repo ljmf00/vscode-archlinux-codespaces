@@ -10,8 +10,7 @@ RUN pacman -Syu base base-devel \
 	lib32-gcc-libs lib32-glibc --noprogressbar --needed --noconfirm
 
 # Add user, group wheel
-RUN /usr/sbin/groupadd --system wheel && \
-    /usr/sbin/useradd -m --groups wheel vscode && \
+RUN /usr/sbin/useradd -m -G wheel -g users vscode && \
     /usr/sbin/sed -i -e "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers && \
     /usr/sbin/echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
