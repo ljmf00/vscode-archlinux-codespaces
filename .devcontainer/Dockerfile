@@ -9,7 +9,7 @@ RUN pacman -Syu base base-devel \
 	git \
 	lib32-gcc-libs lib32-glibc --noprogressbar --needed --noconfirm
 
-# Add user, group wheel
+# Add user vscode, group wheel
 RUN /usr/sbin/useradd -m -G wheel -g users vscode && \
     /usr/sbin/sed -i -e "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers && \
     /usr/sbin/echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
@@ -19,7 +19,7 @@ WORKDIR /home/vscode/
 # Install yay
 RUN cd /tmp && \
     curl https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=yay -o PKGBUILD && \
-    sudo -u user makepkg -sic --noprogressbar --noconfirm && \
+    sudo -u vscode makepkg -sic --noprogressbar --noconfirm && \
     rm -rf PKGBUILD yay*
 
 # Set correct locale
