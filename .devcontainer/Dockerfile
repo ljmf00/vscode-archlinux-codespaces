@@ -40,7 +40,6 @@ ENV LC_CTYPE 'en_US.UTF-8'
 
 # Remove cache and update trusted certs
 RUN rm -rf /var/cache/pacman/pkg/* && \
-    rm -rf /var/lib/pacman/sync/* && \
     rm -rf /tmp/* && \
     trust extract-compat
 
